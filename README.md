@@ -85,6 +85,33 @@ vishnavi          Active   17h
 ```
 jayadmin@cloudshell:~ (kubetrain-331123)$git clone https://github.com/jayaramcloud/springboot.git
 jayadmin@cloudshell:~ (kubetrain-331123)$cd springboot/
+
+```
+
+Change the ... in the line `return "Hello World! Welcome to the World of ...";` with YOUR name
+
+```
+
+jayadmin@cloudshell:~/springboot$ vi src/main/java/io/kubetrain/tutorial/controller/HelloController.java 
+package io.kubetrain.tutorial.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class HelloController {
+
+    @RequestMapping("/")
+    @ResponseBody
+    String index() {
+        return "Hello World! Welcome to the World of ...";
+    }
+
+}
+```
+
+```
 jayadmin@cloudshell:~ (kubetrain-331123)$cat Docker
 jayadmin@cloudshell:~ (kubetrain-331123)$mvn clean package
 ---------------------
