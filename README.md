@@ -258,5 +258,5 @@ f1b5933fe4b5: Mounted from library/openjdk
 v0.1: digest: sha256:6ce436a7b88dbcd7e2e15c89f97719a4a78b1c42d97107b20e3f476a7aacf155 size: 1366
 
 
-# Visist https://hub.docker.com/repositories and login as kubetrain and check if the new image has appeared.
+# Visist https://hub.docker.com/repositories and login as kubetrain and check if the new image is present.
 ```
