@@ -1,4 +1,6 @@
-# springboot-helloworld
+#Springboot Java Container Creation: **Section 1: Ensure You can connect to the Kubernetes Cluster & create a namespace**
+
+```
 jayadmin@cloudshell:~ (kubetrain-331123)$ gcloud container clusters get-credentials virtusa-cluster --zone us-central1-c --project kubetrain-331123
 Fetching cluster endpoint and auth data.
 kubeconfig entry generated for virtusa-cluster.
@@ -70,6 +72,11 @@ ramesh            Active   16h
 sathish           Active   17h
 vinod             Active   16h
 vishnavi          Active   17h
+```
+
+**Section 2: Get the Java code and Build it to helloworld.jar**
+
+```
 jayadmin@cloudshell:~ (kubetrain-331123)$git clone https://github.com/jayaramcloud/springboot.git
 jayadmin@cloudshell:~ (kubetrain-331123)$cd springboot/
 jayadmin@cloudshell:~ (kubetrain-331123)$cat Docker
@@ -109,6 +116,12 @@ drwxr-xr-x 2 jayadmin jayadmin     4096 Dec  1 20:47 maven-archiver
 drwxr-xr-x 3 jayadmin jayadmin     4096 Dec  1 20:47 maven-status
 jayadmin@cloudshell:~/springboot/target$ cd ..;ls
 Dockerfile  README.md  pom.xml  src  target
+
+```
+
+**Section 3: Login to Docker & Build the docker file locally & push it to dockerhub**
+
+```
 jayadmin@cloudshell:~/springboot$ cat Dockerfile
 FROM openjdk:8-jdk-alpine 
 # Refer to Maven build -> finalName 
@@ -164,4 +177,4 @@ v0.1: digest: sha256:6ce436a7b88dbcd7e2e15c89f97719a4a78b1c42d97107b20e3f476a7aa
 
 
 # Visist https://hub.docker.com/repositories and login as kubetrain and check if the new image has appeared.
-
+```
