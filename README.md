@@ -1,4 +1,6 @@
-#Springboot Java Container Creation: **Section 1: Ensure You can connect to the Kubernetes Cluster & create a namespace**
+# Springboot Java Container Creation
+
+**Section 1: Ensure You can connect to the Kubernetes Cluster & create a namespace**
 
 ```
 jayadmin@cloudshell:~ (kubetrain-331123)$ gcloud container clusters get-credentials virtusa-cluster --zone us-central1-c --project kubetrain-331123
@@ -123,7 +125,7 @@ Dockerfile  README.md  pom.xml  src  target
 
 ```
 
-**Section 3: Login to Docker & Build the docker file locally & push it to dockerhub**
+**Section 3a: Login to Docker & Build the docker file locally**
 
 ```
 jayadmin@cloudshell:~/springboot$ cat Dockerfile
@@ -138,15 +140,14 @@ ENTRYPOINT ["java","-jar","app.jar"]
 Ask Jayaram for the dockerhub login password
 ```
 
-jayadmin@cloudshell:~/springboot$ docker login          
-Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
-Username: kubetrain
-Password: 
+jayadmin@cloudshell:~/springboot$ docker login --username kubetrain
+Password:
 WARNING! Your password will be stored unencrypted in /home/jayadmin/.docker/config.json.
 Configure a credential helper to remove this warning. See
 https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 
 Login Succeeded
+
 ```
 Tag with YOUR name here. for example: `docker build -t kubetrain/springboot-demo-YOURNAME:v0.1 .`
 ```
@@ -173,9 +174,53 @@ Removing intermediate container 98f4a6098b22
 Successfully built b0c0de18a9e5
 Successfully tagged kubetrain/springboot-demo-jayaram:v0.1
   
-jayadmin@cloudshell:~/springboot$ docker push  -t kubetrain/springboot-demo-jayaram:v0.1   
-unknown shorthand flag: 't' in -t
-See 'docker push --help'.
+  
+  ```
+
+**Section 3b: Start the docker container locally and access it with curl command**
+
+```
+jayadmin@cloudshell:~/springboot (kubetrain-331123)$ docker run -p  8081:8081 kubetrain/springboot-demo-jayaram:v0.1                                                                                                                              
+Unable to find image 'kubetrain/springboot-demo-jayaram:v0.1' locally
+v0.1: Pulling from kubetrain/springboot-demo-jayaram
+e7c96db7181b: Pull complete
+f910a506b6cb: Pull complete
+c2274a1a0e27: Pull complete
+ce9558e19762: Pull complete
+790e725d72ff: Pull complete
+Digest: sha256:6ce436a7b88dbcd7e2e15c89f97719a4a78b1c42d97107b20e3f476a7aacf155
+Status: Downloaded newer image for kubetrain/springboot-demo-jayaram:v0.1
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.6.RELEASE)
+
+2021-12-01 21:49:01.269  INFO 1 --- [           main] io.kubetrain.tutorial.AppStart           : Starting AppStart v1.0 on ef549877592f with PID 1 (/opt/app/app.jar started by root in /opt/app)
+2021-12-01 21:49:01.274  INFO 1 --- [           main] io.kubetrain.tutorial.AppStart           : No active profile set, falling back to default profiles: default
+2021-12-01 21:49:03.071  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2021-12-01 21:49:03.139  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-01 21:49:03.140  INFO 1 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2021-12-01 21:49:03.317  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-12-01 21:49:03.318  INFO 1 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1981 ms
+2021-12-01 21:49:03.674  INFO 1 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-12-01 21:49:04.098  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2021-12-01 21:49:04.108  INFO 1 --- [           main] io.kubetrain.tutorial.AppStart           : Started AppStart in 3.596 seconds (JVM running for 4.165)
+
+
+#Open another shell and see if you can curl:
+
+jayadmin@cloudshell:~ (kubetrain-331123)$ curl http://localhost:8081
+Hello World! Welcome to the World of ...
+
+```
+
+**Section 4: Push it to Dockerhub**
+
+```
 jayadmin@cloudshell:~/springboot$ docker push  kubetrain/springboot-demo-jayaram:v0.1 
 The push refers to repository [docker.io/kubetrain/springboot-demo-jayaram]
 f51a1c0d8709: Pushed 
