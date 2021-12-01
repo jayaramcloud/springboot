@@ -51,7 +51,11 @@ ramesh            Active   16h
 sathish           Active   17h
 vinod             Active   16h
 vishnavi          Active   17h
+```
+Create YOUR namespace here ` kubectl create namespace YOURNAME`
+```
 jayadmin@cloudshell:~ (kubetrain-331123)$ kubectl create namespace jayaram
+
 namespace/jayaram created
 jayadmin@cloudshell:~ (kubetrain-331123)$ kubectl get namespace                                                                                                                  
 NAME              STATUS   AGE
@@ -130,6 +134,10 @@ COPY target/helloworld.jar app.jar
 # java -jar /opt/app/app.jar 
 ENTRYPOINT ["java","-jar","app.jar"] 
 
+```
+Ask Jayaram for the dockerhub login password
+```
+
 jayadmin@cloudshell:~/springboot$ docker login          
 Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
 Username: kubetrain
@@ -139,7 +147,9 @@ Configure a credential helper to remove this warning. See
 https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 
 Login Succeeded
-
+```
+Tag with YOUR name here. for example: `docker build -t kubetrain/springboot-demo-YOURNAME:v0.1 .`
+```
 jayadmin@cloudshell:~/springboot$ docker build -t kubetrain/springboot-demo-jayaram:v0.1 . 
 Sending build context to Docker daemon  16.92MB
 Step 1/4 : FROM openjdk:8-jdk-alpine
