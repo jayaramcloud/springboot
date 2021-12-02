@@ -112,8 +112,9 @@ public class HelloController {
 ```
 
 ```
-jayadmin@cloudshell:~ (kubetrain-331123)$cat Docker
-jayadmin@cloudshell:~ (kubetrain-331123)$mvn clean package
+jayadmin@cloudshell:~/springboot$cat Docker
+jayadmin@cloudshell:~/springboot$mvn clean package
+
 ---------------------
 Downloaded from central: https://repo.maven.apache.org/maven2/org/springframework/session/spring-session-bom/Bean-SR6/spring-session-bom-Bean-SR6.pom (3.0 kB at 135 kB/s)
 [INFO] 
@@ -200,11 +201,25 @@ Removing intermediate container 98f4a6098b22
  ---> b0c0de18a9e5
 Successfully built b0c0de18a9e5
 Successfully tagged kubetrain/springboot-demo-jayaram:v0.1
-  
-  
-  ```
 
-**Section 3b: Start the docker container locally and access it with curl command**
+  
+```
+
+**Section 3c: Ensure that the docker container image is present locally**
+
+```
+
+jayadmin@cloudshell:~/flask-python$ docker image ls
+REPOSITORY                          TAG       IMAGE ID       CREATED              SIZE
+kubetrain/flask                     0.1       6217b5192b86   About an hour ago    928MB
+kubetrain/springboot-demo-jayaram   v0.1      b0c0de18a9e5   About a minute ao    122MB
+python                              latest    f48ea80eae5a   2 weeks ago          917MB
+
+
+  
+```
+
+**Section 3c: Start the docker container locally and access it with curl command**
 
 ```
 jayadmin@cloudshell:~/springboot (kubetrain-331123)$ docker run -p  8081:8081 kubetrain/springboot-demo-jayaram:v0.1                                                                                                                              
