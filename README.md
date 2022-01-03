@@ -3,14 +3,14 @@
 **Section 1: Ensure You can connect to the Kubernetes Cluster & create a namespace**
 
 ```
-jayadmin@cloudshell:~ (kubetrain-331123)$ gcloud container clusters get-credentials virtusa-cluster --zone us-central1-c --project kubetrain-331123
+jayadmin@cloudshell:~ (kubetrain-331123)$ gcloud container clusters get-credentials mycompany-cluster --zone us-central1-c --project kubetrain-331123
 Fetching cluster endpoint and auth data.
-kubeconfig entry generated for virtusa-cluster.
+kubeconfig entry generated for mycompany-cluster.
 jayadmin@cloudshell:~ (kubetrain-331123)$ kubectl get nodes
 NAME                                             STATUS   ROLES    AGE   VERSION
-gke-virtusa-cluster-default-pool-808e0d91-1fz0   Ready    <none>   17h   v1.21.5-gke.1302
-gke-virtusa-cluster-default-pool-808e0d91-hpdj   Ready    <none>   17h   v1.21.5-gke.1302
-gke-virtusa-cluster-default-pool-808e0d91-mb7b   Ready    <none>   17h   v1.21.5-gke.1302
+gke-mycompany-cluster-default-pool-808e0d91-1fz0   Ready    <none>   17h   v1.21.5-gke.1302
+gke-mycompany-cluster-default-pool-808e0d91-hpdj   Ready    <none>   17h   v1.21.5-gke.1302
+gke-mycompany-cluster-default-pool-808e0d91-mb7b   Ready    <none>   17h   v1.21.5-gke.1302
 jayadmin@cloudshell:~ (kubetrain-331123)$ kubectl get pods -A
 NAMESPACE     NAME                                                        READY   STATUS    RESTARTS   AGE
 kube-system   event-exporter-gke-5479fd58c8-hdscl                         2/2     Running   0          17h
@@ -27,9 +27,9 @@ kube-system   konnectivity-agent-f76cf667b-kxsg6                          1/1   
 kube-system   kube-dns-697dc8fc8b-lvwrt                                   4/4     Running   0          17h
 kube-system   kube-dns-697dc8fc8b-s2z9p                                   4/4     Running   0          17h
 kube-system   kube-dns-autoscaler-844c9d9448-h8z68                        1/1     Running   0          17h
-kube-system   kube-proxy-gke-virtusa-cluster-default-pool-808e0d91-1fz0   1/1     Running   0          17h
-kube-system   kube-proxy-gke-virtusa-cluster-default-pool-808e0d91-hpdj   1/1     Running   0          17h
-kube-system   kube-proxy-gke-virtusa-cluster-default-pool-808e0d91-mb7b   1/1     Running   0          17h
+kube-system   kube-proxy-gke-mycompany-cluster-default-pool-808e0d91-1fz0   1/1     Running   0          17h
+kube-system   kube-proxy-gke-mycompany-cluster-default-pool-808e0d91-hpdj   1/1     Running   0          17h
+kube-system   kube-proxy-gke-mycompany-cluster-default-pool-808e0d91-mb7b   1/1     Running   0          17h
 kube-system   l7-default-backend-865b4c8f8b-pwvv5                         1/1     Running   0          17h
 kube-system   metrics-server-v0.4.4-857776bc9c-p9s78                      2/2     Running   0          17h
 kube-system   pdcsi-node-qhcm7                                            2/2     Running   0          17h
